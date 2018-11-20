@@ -1,5 +1,3 @@
-import { Service } from "./type";
-
 function sendRequest(url: string, options: RequestInit, timeout = 7000) {
   return Promise.race([
     fetch(url, options),
@@ -35,9 +33,11 @@ class REST {
       "Content-Type": "application/json",
       type: this.type, //no-cors for no-cors flag on server
       "X-Auth-Token": this.token,
+      "X-Requested-With": "XmlHttpRequest",
+      origin: "http://127.0.0.1:3000",
       "Access-Control-Allow-Credentials": "true",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
-      "Access-Control-Allow-Origin": "http://localhost:3000"
+      "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
     };
 
     const options: RequestInit = {
@@ -56,7 +56,7 @@ class REST {
 }
 
 const service = new REST(
-  "http://192.168.1.100:2323",
+  "https://crossorigin.me/http://http://localhost:2323",
   30000,
   "marko1234",
   "cors"
