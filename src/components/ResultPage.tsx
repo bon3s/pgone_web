@@ -32,7 +32,7 @@ class ResultPage extends Component<Props> {
             {"\n\n" + this.props.result}
           </p>
         </div>
-        <div className="containerStyle">
+        <div className="containerStyle result">
           <CustomButton onClick={() => this.handleButton()}>Home</CustomButton>
         </div>
       </div>

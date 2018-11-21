@@ -8,6 +8,9 @@
 .containerStyle {
   padding: 15px;
 }
+.containerStyle.result {
+  text-align: center;
+}
 .textStyle {
   color: #000000;
   padding: 15px;
@@ -81,17 +84,19 @@
   right: 5px;
 }
 .viewStyleSuccess {
+  width: 50%;
+  margin: 0 auto;
   padding: 15px;
   justify-content: center;
   align-items: center;
-  border-width: 1;
-  border-color: #007f00;
-  border-radius: 5;
+  border: 1px solid #007f00;
+  border-radius: 5px;
 }
 .textStyleSuccess {
   color: #007f00;
-  font-size: 14;
+  font-size: 18px;
   text-align: center;
+  overflow-wrap: break-word;
 }
 .overlay {
   position: fixed;

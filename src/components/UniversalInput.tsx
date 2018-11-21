@@ -54,7 +54,7 @@ class UniversalInput extends Component<Props> {
         <div className="form-group">
           <form>
             <input
-              type="number"
+              type="text"
               className="universalInput"
               name="NumberInput"
               onChange={event => this.validateNumberInput(event.target.value)}

@@ -41,24 +41,23 @@ class CustomTextInputPage extends Component<Props> {
         .getText(this.props.numberInput, this.props.customTextInput)
         .then(res => {
           if (res) {
-            const responseData = JSON.parse(res._bodyInit);
+            const responseData = res;
             console.log(responseData);
-            if (responseData.result) {
-              this.props.dispatch(modalVisible(false));
-              this.props.dispatch(setResult(responseData.result));
-              this.props.history.push("/ResultPage");
-            } else {
-              this.props.dispatch(modalVisible(false));
-              this.props.dispatch(
-                promptVisible(
-                  true,
-                  responseData.message +
-                    "." +
-                    "\n\nRequest_id:\n\n" +
-                    responseData.request_id
-                )
-              );
-            }
+            this.props.dispatch(modalVisible(false));
+            this.props.dispatch(setResult(responseData));
+            this.props.history.push("/ResultPage");
+          } else {
+            const responseData = res;
+            this.props.dispatch(modalVisible(false));
+            this.props.dispatch(
+              promptVisible(
+                true,
+                responseData +
+                  "." +
+                  "\n\nRequest_id:\n\n" +
+                  responseData.request_id
+              )
+            );
           }
         })
         .catch(error => {

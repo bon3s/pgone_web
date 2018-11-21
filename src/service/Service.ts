@@ -33,22 +33,22 @@ class REST {
       "Content-Type": "application/json",
       type: this.type, //no-cors for no-cors flag on server
       "X-Auth-Token": this.token,
-      "X-Requested-With": "XmlHttpRequest",
-      origin: "http://127.0.0.1:3000",
+      "X-Requested-With": "XMLHttpRequest",
       "Access-Control-Allow-Credentials": "true",
+      "Access-Control-Allow-Headers": "x-requested-with, x-requested-by",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
-      "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
+      "Access-Control-Allow-Origin": "http://localhost:3000"
     };
 
     const options: RequestInit = {
       method: "POST",
       headers: myHeaders,
-      credentials: "include",
       body: JSON.stringify(body)
     };
     try {
       const res = await sendRequest(this.hostUrl, options, this.timeout);
-      return res;
+      const parsed = await (res as Response).json();
+      return parsed.result;
     } catch (e) {
       console.log(e);
     }
@@ -56,7 +56,7 @@ class REST {
 }
 
 const service = new REST(
-  "https://crossorigin.me/http://http://localhost:2323",
+  "https://cors-anywhere.herokuapp.com/http://672ea359.ngrok.io",
   30000,
   "marko1234",
   "cors"
