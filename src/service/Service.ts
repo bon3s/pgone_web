@@ -35,9 +35,10 @@ class REST {
       "X-Auth-Token": this.token,
       "X-Requested-With": "XMLHttpRequest",
       "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Headers": "x-requested-with, x-requested-by",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
-      "Access-Control-Allow-Origin": "http://localhost:3000"
+      "Access-Control-Allow-Headers":
+        "Origin, Accept, X-Requested-With, Content-Type, X-Custom-Information, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Credentials",
+      "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, OPTIONS, PATCH",
+      "Access-Control-Allow-Origin": "http://localhost:3030/api"
     };
 
     const options: RequestInit = {
@@ -48,6 +49,7 @@ class REST {
     try {
       const res = await sendRequest(this.hostUrl, options, this.timeout);
       const parsed = await (res as Response).json();
+      console.log(parsed);
       return parsed.result;
     } catch (e) {
       console.log(e);
@@ -56,7 +58,7 @@ class REST {
 }
 
 const service = new REST(
-  "https://cors-anywhere.herokuapp.com/http://672ea359.ngrok.io",
+  "http://localhost:3030/api",
   30000,
   "marko1234",
   "cors"
